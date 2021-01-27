@@ -13,7 +13,10 @@ g++ source/main.cpp -o RayTracer
 mkdir build && cd build && cmake .. && make && cd -
 ```
 
-Then just launch RayTracer
+Then redirect the output of the program to a file:
+```
+./RayTracer > image.ppm
+```
 
 ## Preview
 
