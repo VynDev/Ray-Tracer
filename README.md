@@ -1,4 +1,4 @@
-Implementation from the tutorial: https://raytracing.github.io/books/RayTracingInOneWeekend.html
+Implementation from the book: https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
 ## Build & Run
 
