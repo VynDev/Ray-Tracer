@@ -15,4 +15,6 @@ mkdir build && cd build && cmake .. && make && cd -
 
 Then just launch RayTracer
 
-#
+## Preview
+
+![preview](https://github.com/VynDev/Ray-Tracer/blob/main/images/preview.png)
