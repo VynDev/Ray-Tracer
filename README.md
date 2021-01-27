@@ -1,6 +1,6 @@
 Implementation from the book: https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
-## Build & Run
+## Build
 
 ### Using g++
 
@@ -13,7 +13,9 @@ g++ source/main.cpp -o RayTracer
 mkdir build && cd build && cmake .. && make && cd -
 ```
 
-Then redirect the output of the program to a file:
+## Run
+
+Redirect the output of the program to a file:
 ```
 ./RayTracer > image.ppm
 ```
