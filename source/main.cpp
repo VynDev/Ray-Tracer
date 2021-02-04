@@ -4,6 +4,7 @@
 #include "Hittable.h"
 #include "HittableList.h"
 #include "Sphere.h"
+#include "Face.h"
 #include "Camera.h"
 #include "Material.h"
 
@@ -83,34 +84,38 @@ int main() {
     const int samplesPerPixel = 100;
     const int maxDepth = 50;*/
 
-    const auto aspectRatio = 3.0 / 2.0;
-    const int imageWidth = 1200;
+    const auto aspectRatio = 16.0 / 9.0;
+    const int imageWidth = 400;
     const int imageHeight = static_cast<int>(imageWidth / aspectRatio);
     const int samplesPerPixel = 50;
     const int maxDepth = 50;
 
     // World
 
-    HittableList world = RandomScene();
+    //HittableList world = RandomScene();
+    HittableList world;
 
-    auto materialGround = make_shared<Lambertian>(Color(0.8, 0.8, 0.0));
-    auto materialCenter = make_shared<Lambertian>(Color(0.1, 0.2, 0.5));
+    auto materialGround = make_shared<Lambertian>(Color(0.8, 0.8, 0.8));
+    auto materialCenter = make_shared<Lambertian>(Color(0.5, 0.2, 0.4));
     auto materialLeft   = make_shared<Dieletric>(1.5);
-    auto materialRight  = make_shared<Metal>(Color(0.8, 0.6, 0.2), 0.1);
+    auto materialRight  = make_shared<Metal>(Color(0.8, 0.8, 0.9), 0.1);
 
-    world.Add(make_shared<Sphere>(Point3( 0.0, -100.5, -1.0), 100.0, materialGround));
-    world.Add(make_shared<Sphere>(Point3( 0.0,    0.0, -1.0),   0.5, materialCenter));
-    world.Add(make_shared<Sphere>(Point3(-1.0,    0.0, -1.0),   0.5, materialLeft));
-    world.Add(make_shared<Sphere>(Point3( 1.0,    0.0, -1.0),   0.5, materialRight));
+    world.Add(make_shared<Sphere>(Point3(0.0, -101, -1.0), 100.0, materialGround));
+    //world.Add(make_shared<Sphere>(Point3( 0.0,    0.0, -1.0),   0.5, materialCenter));
+    //world.Add(make_shared<Sphere>(Point3(-1.0,    0.0, -1.0),   0.5, materialLeft));
+    //world.Add(make_shared<Sphere>(Point3( 1.0,    0.0, -1.0),   0.5, materialRight));
+
+    world.Add(make_shared<Sphere>(Point3(1, 0, 2), 1, materialRight));
+    world.Add(make_shared<Face>(Point3(-2, 2, 2), Vector3(1, 0, 0), Vector3(0, 100, 0), Vector3(1, 1, 1), materialCenter));
 
     // Camera
-    Point3 lookfrom(13, 3, 3);
-    Point3 lookat(0, 0, 0);
+    Point3 lookfrom(0, 1, 5);
+    Point3 lookat(0, 1, 0);
     Vector3 vup(0, 1, 0);
     auto distToFocus = 10.0;
     auto aperture = 0.1;
 
-    Camera camera(lookfrom, lookat, vup, 20, aspectRatio, aperture, distToFocus);
+    Camera camera(lookfrom, lookat, vup, 90, aspectRatio, aperture, distToFocus);
 
     cout << "P3\n" << imageWidth << " " << imageHeight << "\n255\n";
 
