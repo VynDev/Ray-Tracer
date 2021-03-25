@@ -7,6 +7,7 @@
 #include "Face.h"
 #include "Camera.h"
 #include "Material.h"
+#include "Window.h"
 
 using namespace std;
 
@@ -119,8 +120,9 @@ int main() {
 
     cout << "P3\n" << imageWidth << " " << imageHeight << "\n255\n";
 
-    for (int j = imageHeight - 1; j >= 0; --j) {
-        cerr << "Scanlines remaining: " << j << endl << flush;
+    Window window(imageWidth, imageHeight);
+    for (int j = 0; j < imageHeight; ++j) {
+        cerr << "Scanlines remaining: " << imageHeight - j << endl << flush;
         for (int i = 0; i < imageWidth; ++i) {
 
             Color pixelColor(0, 0, 0);
@@ -131,8 +133,10 @@ int main() {
                 Ray r = camera.GetRay(u, v);
                 pixelColor += RayColor(r, world, maxDepth);
             }
-            WriteColor(std::cout, pixelColor, samplesPerPixel);
+            window.WriteColor(Vector3(i, imageHeight - j - 1, 0), pixelColor, samplesPerPixel);
         }
     }
+    window.Render();
+    window.Wait();
     cerr << "Render completed." << endl;
 }
