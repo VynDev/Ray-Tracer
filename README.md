@@ -1,3 +1,5 @@
+![preview](https://github.com/VynDev/Ray-Tracer/blob/main/images/preview.png)
+
 Implementation from the book: https://raytracing.github.io/books/RayTracingInOneWeekend.html
 
 ## Build
@@ -19,7 +21,3 @@ Redirect the output of the program to a file:
 ```
 ./RayTracer > image.ppm
 ```
-
-## Preview
-
-![preview](https://github.com/VynDev/Ray-Tracer/blob/main/images/preview.png)
